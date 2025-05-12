@@ -9,7 +9,9 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="style.css" />
+    <style>
+
+    </style>
     <title>Simulacro PP - 2024</title>
   </head>
   <body>
@@ -31,4 +33,48 @@
       </section>
     </main>
   </body>
+  <script>
+    class Serie{
+      id;
+      url;
+      name;
+      languaje;
+      generes;
+      image;
+      constructor(id, url, name, language, generes, image){
+        this.id = id;
+        this.url=url;
+        this.name=name;
+        this.languaje=language;
+        this.generes=generes;
+        this.image=image;
+
+      }
+      
+      toJsonString(){
+        return JSON.stringify(this);
+
+      }
+      createFromJsonString(json){
+        const datos = JSON.parse(json);
+        return new Serie(datos.name, datos.lenguaje, datos.generes, datos.image);
+
+      }
+      createHtmlElement(){
+
+      }
+
+    }
+
+    fetch("https://api.tvmaze.com/lookup/shows?thetvdb=81189")
+    .then(response => response.json())
+    .then(data => {
+        const array = Serie.createFromJsonString(data);
+
+    })
+    .catch()
+
+
+
+  </script>
 </html>
